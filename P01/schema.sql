@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS exit_reasons (
 -- 8. Exits
 -- Depends on: Riders, Stages, Exit Reasons
 CREATE TABLE IF NOT EXISTS exits (
-    bib_number INTEGER PRIMARY KEY REFERENCES riders(bib_number),
+    bib_number INTEGER PRIMARY KEY,
     stage_number INTEGER NOT NULL REFERENCES stages(stage_number),
     reason TEXT NOT NULL REFERENCES exit_reasons(reason)
 );
