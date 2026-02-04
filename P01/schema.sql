@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS riders (
     team TEXT NOT NULL REFERENCES teams(name),
     name TEXT NOT NULL,
     dob DATE NOT NULL,
-    country CHAR(3) NOT NULL REFERENCES countries(ioc)
+    country CHAR(3) REFERENCES countries(ioc)
 );
 
 -- 5. Stages
