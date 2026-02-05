@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS regions (
 );
 
 -- 2. Countries
+-- Depends on: Regions
 CREATE TABLE IF NOT EXISTS countries (
     ioc CHAR(3) PRIMARY KEY,
     name TEXT UNIQUE NOT NULL,
