@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS stages (
     start_location TEXT NOT NULL REFERENCES locations(name),
     finish_location TEXT NOT NULL REFERENCES locations(name),
     type TEXT NOT NULL REFERENCES stage_types(type),
-    length INTEGER NOT NULL
+    length INTEGER NOT NULL CHECK (length > 0)
 );
 
 -- 8. Results
@@ -65,10 +65,10 @@ CREATE TABLE IF NOT EXISTS stages (
 CREATE TABLE IF NOT EXISTS results (
     stage_number INTEGER REFERENCES stages(stage_number),
     bib_number INTEGER REFERENCES riders(bib_number),
-    time_taken INTEGER,
-    bonus INTEGER DEFAULT 0,
-    penalty INTEGER DEFAULT 0,
-    rank INTEGER,
+    time_taken INTEGER CHECK (time_taken >= 0),
+    bonus INTEGER DEFAULT 0 CHECK (bonus >= 0),
+    penalty INTEGER DEFAULT 0 CHECK (penalty >= 0),
+    rank INTEGER CHECK (rank > 0),
 
     PRIMARY KEY (stage_number, bib_number),
     UNIQUE (stage_number, rank)
