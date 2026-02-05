@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS stage_types (
 );
 
 -- 7. Stages
--- Depends on: Locations
+-- Depends on: Locations, Stage Types
 CREATE TABLE IF NOT EXISTS stages (
     stage_number INTEGER PRIMARY KEY,
     start_location TEXT NOT NULL REFERENCES locations(name),
