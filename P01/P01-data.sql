@@ -1,3 +1,12 @@
+--
+-- Group Number: 15
+-- Group Members:
+--   1. GOH YI HENG, RAYNER
+--   2. JOVAN TEO YI
+--   3. MAI KAI LER
+--   4. NICHA ING SEE
+--
+
 -- Insert Countries
 INSERT INTO countries (ioc, name, region) VALUES ('ESP', 'Spain', 'Europe');
 INSERT INTO countries (ioc, name, region) VALUES ('BEL', 'Belgium', 'Europe');
@@ -431,6 +440,13 @@ INSERT INTO results (stage_number, bib_number, time_taken, bonus, penalty, rank)
 -- Insert Exit Reasons
 INSERT INTO exit_reasons VALUES ('DNS');
 INSERT INTO exit_reasons VALUES ('withdrawal');
+
+-- Insert Rider information who exited in stage 1
+-- Our team has decided to find the details of the missing riders who exited in stage 1 online as
+-- we felt that enforcing the bib_number in the exits table as a foreign key is important to ensure consistency in the database
+-- Source: https://www.velowire.com/article/1221/en/the-participants-list-of-the-tour-de-france-2025-and-the-bib-numbers.html and google
+INSERT INTO riders (bib_number, team, name, dob, country) VALUES (64, 'INEOS GRENADIERS', 'Filippo Ganna', '1996-07-25', 'ITA');
+INSERT INTO riders (bib_number, team, name, dob, country) VALUES (154, 'DECATHLON AG2R LA MONDIALE TEAM', 'Stefan Bissegger', '1998-09-13', 'SUI');
 
 -- Insert Exits
 INSERT INTO exits (bib_number, stage_number, reason) VALUES (64, 1, 'withdrawal');

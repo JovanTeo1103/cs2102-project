@@ -38,17 +38,22 @@ CREATE TABLE IF NOT EXISTS riders (
     country CHAR(3) REFERENCES countries(ioc)
 );
 
--- 5. Stages
+-- 5. Stage types
+CRREATE TABLE IF NOT EXISTS stage_types (
+    type TEXT PRIMARY KEY
+);
+
+-- 6. Stages
 -- Depends on: Locations
 CREATE TABLE IF NOT EXISTS stages (
     stage_number INTEGER PRIMARY KEY,
     start_location TEXT NOT NULL REFERENCES locations(name),
     finish_location TEXT NOT NULL REFERENCES locations(name),
-    type TEXT NOT NULL,
+    type TEXT NOT NULL REFERENCES stage_types(type),
     length INTEGER NOT NULL
 );
 
--- 6. Results
+-- 7. Results
 -- Depends on: Stages, Riders
 CREATE TABLE IF NOT EXISTS results (
     stage_number INTEGER REFERENCES stages(stage_number),
@@ -62,16 +67,16 @@ CREATE TABLE IF NOT EXISTS results (
     UNIQUE (stage_number, rank)
 );
 
--- 7. Exit Reasons
+-- 8. Exit Reasons
 -- Independent table
 CREATE TABLE IF NOT EXISTS exit_reasons (
     reason TEXT PRIMARY KEY
 );
 
--- 8. Exits
+-- 9. Exits
 -- Depends on: Riders, Stages, Exit Reasons
 CREATE TABLE IF NOT EXISTS exits (
-    bib_number INTEGER PRIMARY KEY,
+    bib_number INTEGER PRIMARY KEY REFERENCES riders(bib_number),
     stage_number INTEGER NOT NULL REFERENCES stages(stage_number),
     reason TEXT NOT NULL REFERENCES exit_reasons(reason)
 );
