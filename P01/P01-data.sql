@@ -266,7 +266,7 @@ INSERT INTO stage_types (type) VALUES ('mountain');
 INSERT INTO stage_types (type) VALUES ('team time-trial');
 
 -- Insert Stage 1
-INSERT INTO stages (stage_number, start_location, finish_location, type, length) VALUES (1, 'Barcelona', 'Barcelona', 'team time-trial', 19);
+INSERT INTO stages (day, stage_number, start_location, finish_location, type, length) VALUES ('2025-07-04',1, 'Barcelona', 'Barcelona', 'team time-trial', 19);
 
 -- Insert Results for Stage 1
 INSERT INTO results (stage_number, bib_number, time_taken, bonus, penalty, rank) VALUES (1, 101, 13991, 10, 0, 1);
