@@ -258,6 +258,13 @@ INSERT INTO riders (bib_number, team, name, dob, country) VALUES (83, 'LIDL-TREK
 INSERT INTO riders (bib_number, team, name, dob, country) VALUES (92, 'GROUPAMA-FDJ', 'Lewis Askey', '2001-05-04', 'GBR');
 INSERT INTO riders (bib_number, team, name, dob, country) VALUES (55, 'BAHRAIN VICTORIOUS', 'Lenny Martinez', '2003-07-11', 'FRA');
 
+-- Insert stage types
+INSERT INTO stage_types (type) VALUES ('flat');
+INSERT INTO stage_types (type) VALUES ('hilly');
+INSERT INTO stage_types (type) VALUES ('individual time-trial');
+INSERT INTO stage_types (type) VALUES ('mountain');
+INSERT INTO stage_types (type) VALUES ('team time-trial');
+
 -- Insert Stage 1
 INSERT INTO stages (stage_number, start_location, finish_location, type, length) VALUES (1, 'Barcelona', 'Barcelona', 'team time-trial', 19);
 
