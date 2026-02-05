@@ -7,28 +7,33 @@
 --   4. NICHA ING SEE
 --
 
--- 1. Countries
+-- 1. Regions 
+CREATE TABLE IF NOT EXISTS regions (
+    name TEXT PRIMARY KEY
+);
+
+-- 2. Countries
 CREATE TABLE IF NOT EXISTS countries (
     ioc CHAR(3) PRIMARY KEY,
     name TEXT UNIQUE NOT NULL,
-    region TEXT NOT NULL
+    region TEXT NOT NULL REFERENCES regions(name)
 );
 
--- 2. Locations
+-- 3. Locations
 -- Depends on: Countries
 CREATE TABLE IF NOT EXISTS locations (
     name TEXT PRIMARY KEY,
     country CHAR(3) NOT NULL REFERENCES countries(ioc)
 );
 
--- 3. Teams
+-- 4. Teams
 -- Depends on: Countries
 CREATE TABLE IF NOT EXISTS teams (
     name TEXT PRIMARY KEY,
     country CHAR(3) NOT NULL REFERENCES countries(ioc)
 );
 
--- 4. Riders
+-- 5. Riders
 -- Depends on: Teams, Countries
 CREATE TABLE IF NOT EXISTS riders (
     bib_number INTEGER PRIMARY KEY,
@@ -38,12 +43,12 @@ CREATE TABLE IF NOT EXISTS riders (
     country CHAR(3) REFERENCES countries(ioc)
 );
 
--- 5. Stage types
-CRREATE TABLE IF NOT EXISTS stage_types (
+-- 6. Stage types
+CREATE TABLE IF NOT EXISTS stage_types (
     type TEXT PRIMARY KEY
 );
 
--- 6. Stages
+-- 7. Stages
 -- Depends on: Locations
 CREATE TABLE IF NOT EXISTS stages (
     stage_number INTEGER PRIMARY KEY,
@@ -53,7 +58,7 @@ CREATE TABLE IF NOT EXISTS stages (
     length INTEGER NOT NULL
 );
 
--- 7. Results
+-- 8. Results
 -- Depends on: Stages, Riders
 CREATE TABLE IF NOT EXISTS results (
     stage_number INTEGER REFERENCES stages(stage_number),
@@ -67,13 +72,13 @@ CREATE TABLE IF NOT EXISTS results (
     UNIQUE (stage_number, rank)
 );
 
--- 8. Exit Reasons
+-- 9. Exit Reasons
 -- Independent table
 CREATE TABLE IF NOT EXISTS exit_reasons (
     reason TEXT PRIMARY KEY
 );
 
--- 9. Exits
+-- 10. Exits
 -- Depends on: Riders, Stages, Exit Reasons
 CREATE TABLE IF NOT EXISTS exits (
     bib_number INTEGER PRIMARY KEY REFERENCES riders(bib_number),

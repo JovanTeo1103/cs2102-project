@@ -7,6 +7,14 @@
 --   4. NICHA ING SEE
 --
 
+-- Insert Regions 
+INSERT INTO regions (name) VALUES ('Africa');
+INSERT INTO regions (name) VALUES ('Asia');
+INSERT INTO regions (name) VALUES ('Europe');
+INSERT INTO regions (name) VALUES ('North America');
+INSERT INTO regions (name) VALUES ('Oceania');
+INSERT INTO regions (name) VALUES ('South America');
+
 -- Insert Countries
 INSERT INTO countries (ioc, name, region) VALUES ('ESP', 'Spain', 'Europe');
 INSERT INTO countries (ioc, name, region) VALUES ('BEL', 'Belgium', 'Europe');
