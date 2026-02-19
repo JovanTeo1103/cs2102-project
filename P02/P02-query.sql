@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS rider (
 );
 
 CREATE TABLE IF NOT EXISTS stage_type (
-    type TEXT PRIMARY KEY
+    type TEXT PRIMARY KEY CHECK (type IN ('hilly', 'flat', 'mountain', 
+    'individual time-trial', 'team time-trial'))
 );
 
 CREATE TABLE IF NOT EXISTS location (
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS result (
 );
 
 CREATE TABLE IF NOT EXISTS exit_reason (
-    reason TEXT PRIMARY KEY
+    reason TEXT PRIMARY KEY CHECK (reason IN ('withdrawal', 'DNS'))
 );
 
 CREATE TABLE IF NOT EXISTS exits (
