@@ -4027,5 +4027,13 @@ FROM rider r
 JOIN result res ON r.bib_number = res.bib_number
 WHERE r.bib_number NOT IN (SELECT bib_number FROM exits)
 GROUP BY r.bib_number, r.name
-ORDER BY time ASC
-LIMIT 1;
+HAVING SUM(res.total_time + res.penalty - res.bonus) = (
+    SELECT MIN(time)
+    FROM (
+        SELECT SUM(res2.total_time + res2.penalty - res2.bonus) AS time
+        FROM rider r2
+        JOIN result res2 ON r2.bib_number = res2.bib_number
+        WHERE r2.bib_number NOT IN (SELECT bib_number FROM exits)
+        GROUP BY r2.bib_number
+    ) AS totals
+);
